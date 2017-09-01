@@ -8,66 +8,179 @@
 
 import SpriteKit
 import GameplayKit
+import AVFoundation
 
 class GameScene: SKScene {
     
-    private var label : SKLabelNode?
-    private var spinnyNode : SKShapeNode?
+    var viewController: GameViewController?
+    private var tiles = [Tile]()
+    private var gameScore : SKLabelNode!
+    private var gameTime : SKLabelNode!
+    private var score : Int = 0{
+        didSet {
+            gameScore.text = "Score: \(score)"
+        }
+    }
+    private var popupTime = 0.85
+    private var time = 30{
+        didSet {
+            gameTime.text = "Time: \(time)"
+        }
+    }
+    private var w = UIScreen.main.bounds.size.width
+    private var h = UIScreen.main.bounds.size.height
+    
+       
     
     override func didMove(to view: SKView) {
         
-        // Get label node from scene and store it for use later
-        self.label = self.childNode(withName: "//helloLabel") as? SKLabelNode
-        if let label = self.label {
-            label.alpha = 0.0
-            label.run(SKAction.fadeIn(withDuration: 2.0))
+        let background = SKSpriteNode(imageNamed: "party")
+        background.blendMode = .replace
+        background.anchorPoint = CGPoint(x:0.5,y: 0.5)
+        background.size.height = self.size.height
+        background.size.width = self.size.width
+        background.position = CGPoint(x: self.frame.midX , y: self.frame.midY)
+        
+        addChild(background)
+        
+        gameScore = SKLabelNode(fontNamed: "ChalkDuster")
+        gameScore.text = "Score: 0"
+        gameScore.fontSize = 48
+        gameScore.zPosition = 1
+        gameScore.position = CGPoint(x: self.frame.midX - (w/1.5), y: self.frame.maxY-(h/3))
+        addChild(gameScore)
+        
+        gameTime = SKLabelNode(fontNamed: "ChalkDuster")
+        gameTime.text = "Time: 30"
+        gameTime.fontSize = 48
+        gameTime.zPosition = 1
+        gameTime.position = CGPoint(x: self.frame.midX + (w/1.5), y: self.frame.maxY-(h/3))
+        addChild(gameTime)
+        
+        for j in 0..<6 {
+            if(j%2 == 0){
+                for i in 0..<5 {
+                    createTileAt(pos: CGPoint(x: -210+(i*170),y:410-(j*90)))
+                }
+            }else{
+                for i in 0..<4 {
+                    createTileAt(pos: CGPoint(x: -280+(i*170),y:410-(j*90)))
+                }
+            }
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [unowned self] in
+            self.createCharacter()
         }
         
-        // Create shape node to use during mouse interaction
-        let w = (self.size.width + self.size.height) * 0.05
-        self.spinnyNode = SKShapeNode.init(rectOf: CGSize.init(width: w, height: w), cornerRadius: w * 0.3)
+    }
+    func createTileAt(pos: CGPoint){
+        let tile = Tile()
+        tile.configAtPosition(pos: pos)
+        addChild(tile)
+        tiles.append(tile)
         
-        if let spinnyNode = self.spinnyNode {
-            spinnyNode.lineWidth = 2.5
+    }
+    func createCharacter(){
+        //game ends here//
+        time-=1;
+        
+        if (time <= 0){
+            for tile in tiles{
+                tile.hide()
+            }
+            let gameOver = SKSpriteNode(imageNamed:"gameOver")
+            gameOver.position = CGPoint(x: self.frame.midX, y : self.frame.midY)
+            gameOver.zPosition = 2
+            addChild(gameOver)
             
-            spinnyNode.run(SKAction.repeatForever(SKAction.rotate(byAngle: CGFloat(Double.pi), duration: 1)))
-            spinnyNode.run(SKAction.sequence([SKAction.wait(forDuration: 0.5),
-                                              SKAction.fadeOut(withDuration: 0.5),
-                                              SKAction.removeFromParent()]))
+           //Switch Scenes
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) { [unowned self] in
+                self.viewController?.endGame(score: self.score)
+
+            }
+            return
+        }
+        
+        
+        
+        popupTime *= 0.991
+        
+        tiles = GKRandomSource.sharedRandom().arrayByShufflingObjects(in: tiles) as! [Tile]
+        tiles[0].show(hideTime: popupTime)
+        
+        if RandomInt(min: 0, max: 12) > 4 { tiles[1].show(hideTime: popupTime) }
+        if RandomInt(min: 0, max: 12) > 8 {  tiles[2].show(hideTime: popupTime) }
+        if RandomInt(min: 0, max: 12) > 10 { tiles[3].show(hideTime: popupTime) }
+        if RandomInt(min: 0, max: 12) > 11 { tiles[4].show(hideTime: popupTime)  }
+        
+        let minDelay = popupTime / 2.0
+        let maxDelay = popupTime * 2
+        let delay = RandomDouble(min: minDelay, max: maxDelay)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + delay) { [unowned self] in
+            self.createCharacter()
         }
     }
     
     
     func touchDown(atPoint pos : CGPoint) {
-        if let n = self.spinnyNode?.copy() as! SKShapeNode? {
-            n.position = pos
-            n.strokeColor = SKColor.green
-            self.addChild(n)
-        }
+      
     }
     
     func touchMoved(toPoint pos : CGPoint) {
-        if let n = self.spinnyNode?.copy() as! SKShapeNode? {
-            n.position = pos
-            n.strokeColor = SKColor.blue
-            self.addChild(n)
-        }
+       
     }
     
     func touchUp(atPoint pos : CGPoint) {
-        if let n = self.spinnyNode?.copy() as! SKShapeNode? {
-            n.position = pos
-            n.strokeColor = SKColor.red
-            self.addChild(n)
-        }
+        
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if let label = self.label {
-            label.run(SKAction.init(named: "Pulse")!, withKey: "fadeInOut")
+        if let touch = touches.first {
+            let location = touch.location(in: self)
+            let tappedNodes = nodes(at: location)
+            
+            for node in tappedNodes {
+                if node.name == "charGood" {
+                    
+                    let tile = node.parent!.parent as! Tile
+                    if !tile.visible { continue }
+                    if tile.isHit { continue }
+                    
+                    tile.hit()
+                    score -= 5
+                    
+                    if let soundURL = Bundle.main.url(forResource: "whackBad", withExtension: "caf") {
+                        var mySound: SystemSoundID = 0
+                        AudioServicesCreateSystemSoundID(soundURL as CFURL, &mySound)
+                        // Play
+                        AudioServicesPlaySystemSound(mySound);
+                    }
+                    
+                } else if node.name == "charEvil" {
+                    
+                    let tile = node.parent!.parent as! Tile
+                    if !tile.visible { continue }
+                    if tile.isHit { continue }
+                    
+                    tile.charNode.xScale = 0.65
+                    tile.charNode.yScale = 0.65
+                    
+                    tile.hit()
+                    score += 1
+                    if let soundURL = Bundle.main.url(forResource: "whack", withExtension: "caf") {
+                        var mySound: SystemSoundID = 0
+                        AudioServicesCreateSystemSoundID(soundURL as CFURL, &mySound)
+                        // Play
+                        AudioServicesPlaySystemSound(mySound);
+                    }
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                        tile.charNode.xScale = 1
+                        tile.charNode.yScale = 1
+                    }
+                }
+            }
         }
-        
-        for t in touches { self.touchDown(atPoint: t.location(in: self)) }
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {

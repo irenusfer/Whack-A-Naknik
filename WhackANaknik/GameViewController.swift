@@ -11,17 +11,17 @@ import SpriteKit
 import GameplayKit
 
 class GameViewController: UIViewController {
-
     override func viewDidLoad() {
         super.viewDidLoad()
         
         if let view = self.view as! SKView? {
             // Load the SKScene from 'GameScene.sks'
-            if let scene = SKScene(fileNamed: "GameScene") {
+            if let scene = GameScene(fileNamed: "GameScene") {
                 // Set the scale mode to scale to fit the window
                 scene.scaleMode = .aspectFill
                 
                 // Present the scene
+                scene.viewController = self
                 view.presentScene(scene)
             }
             
@@ -31,7 +31,14 @@ class GameViewController: UIViewController {
             view.showsNodeCount = true
         }
     }
-
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let theDestination = (segue.destination as! EndViewController)
+        theDestination.score = sender as? Int
+    }
+    func endGame(score: Int){
+        performSegue(withIdentifier: "End Game", sender: score)
+    }
+    
     override var shouldAutorotate: Bool {
         return true
     }
