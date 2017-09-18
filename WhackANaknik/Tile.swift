@@ -14,7 +14,6 @@ class Tile: SKNode {
     var visible = false
     var isHit = false
     
-    
     func configAtPosition(pos: CGPoint){
         position = pos
         

@@ -9,6 +9,17 @@
 import Foundation
 import UIKit
 
+extension String {
+    func leftPadding(toLength: Int, withPad character: Character) -> String {
+        let newLength = self.characters.count
+        if newLength < toLength {
+            return String(repeatElement(character, count: toLength - newLength)) + self
+        } else {
+            return self.substring(from: index(self.startIndex, offsetBy: newLength - toLength))
+        }
+    }
+}
+
 func RandomInt(min: Int, max: Int) -> Int {
 	if max < min { return min }
 	return Int(arc4random_uniform(UInt32((max - min) + 1))) + min

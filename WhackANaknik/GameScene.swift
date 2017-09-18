@@ -11,7 +11,7 @@ import GameplayKit
 import AVFoundation
 
 class GameScene: SKScene {
-    
+    var isLost:Bool = false
     var viewController: GameViewController?
     private var tiles = [Tile]()
     private var gameScore : SKLabelNode!
@@ -21,6 +21,7 @@ class GameScene: SKScene {
             gameScore.text = "Score: \(score)"
         }
     }
+    private var background:SKSpriteNode?
     private var popupTime = 0.85
     private var time = 30{
         didSet {
@@ -33,15 +34,18 @@ class GameScene: SKScene {
        
     
     override func didMove(to view: SKView) {
-        
-        let background = SKSpriteNode(imageNamed: "party")
-        background.blendMode = .replace
-        background.anchorPoint = CGPoint(x:0.5,y: 0.5)
-        background.size.height = self.size.height
-        background.size.width = self.size.width
-        background.position = CGPoint(x: self.frame.midX , y: self.frame.midY)
-        
-        addChild(background)
+        if(viewController?.image != nil){
+            let texture = SKTexture(image: (viewController?.image)!)
+            background = SKSpriteNode(texture: texture)
+        }else{
+            background = SKSpriteNode(imageNamed: "party")
+        }
+        background?.blendMode = .replace
+        background?.anchorPoint = CGPoint(x:0.5,y: 0.5)
+        background?.size.height = self.size.height
+        background?.size.width = self.size.width
+        background?.position = CGPoint(x: self.frame.midX , y: self.frame.midY)
+        addChild(background!)
         
         gameScore = SKLabelNode(fontNamed: "ChalkDuster")
         gameScore.text = "Score: 0"
@@ -80,45 +84,50 @@ class GameScene: SKScene {
         tiles.append(tile)
         
     }
-    func createCharacter(){
-        //game ends here//
-        time-=1;
+    func endGame(winOrLose: Bool){
+        for tile in tiles{
+            tile.hide()
+        }
+        let gameOver = SKSpriteNode(imageNamed:"gameOver")
+        gameOver.position = CGPoint(x: self.frame.midX, y : self.frame.midY)
+        gameOver.zPosition = 2
+        addChild(gameOver)
         
-        if (time <= 0){
-            for tile in tiles{
-                tile.hide()
-            }
-            let gameOver = SKSpriteNode(imageNamed:"gameOver")
-            gameOver.position = CGPoint(x: self.frame.midX, y : self.frame.midY)
-            gameOver.zPosition = 2
-            addChild(gameOver)
-            
-           //Switch Scenes
+        //Switch Scenes
+        if(winOrLose){
             DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) { [unowned self] in
                 self.viewController?.endGame(score: self.score)
-
             }
-            return
+        }else{
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) { [unowned self] in
+                self.viewController?.endGame(score: -1)
+            }
         }
-        
-        
-        
-        popupTime *= 0.991
-        
-        tiles = GKRandomSource.sharedRandom().arrayByShufflingObjects(in: tiles) as! [Tile]
-        tiles[0].show(hideTime: popupTime)
-        
-        if RandomInt(min: 0, max: 12) > 4 { tiles[1].show(hideTime: popupTime) }
-        if RandomInt(min: 0, max: 12) > 8 {  tiles[2].show(hideTime: popupTime) }
-        if RandomInt(min: 0, max: 12) > 10 { tiles[3].show(hideTime: popupTime) }
-        if RandomInt(min: 0, max: 12) > 11 { tiles[4].show(hideTime: popupTime)  }
-        
-        let minDelay = popupTime / 2.0
-        let maxDelay = popupTime * 2
-        let delay = RandomDouble(min: minDelay, max: maxDelay)
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + delay) { [unowned self] in
-            self.createCharacter()
+    }
+    func createCharacter(){
+        if(!isLost){
+            time-=1;
+            if (time <= 0){
+                endGame(winOrLose: true)
+                return
+            }
+            popupTime *= 0.991
+            
+            tiles = GKRandomSource.sharedRandom().arrayByShufflingObjects(in: tiles) as! [Tile]
+            tiles[0].show(hideTime: popupTime)
+            
+            if RandomInt(min: 0, max: 12) > 4 { tiles[1].show(hideTime: popupTime) }
+            if RandomInt(min: 0, max: 12) > 8 {  tiles[2].show(hideTime: popupTime) }
+            if RandomInt(min: 0, max: 12) > 10 { tiles[3].show(hideTime: popupTime) }
+            if RandomInt(min: 0, max: 12) > 11 { tiles[4].show(hideTime: popupTime)  }
+            
+            let minDelay = popupTime / 2.0
+            let maxDelay = popupTime * 2
+            let delay = RandomDouble(min: minDelay, max: maxDelay)
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + delay) { [unowned self] in
+                self.createCharacter()
+            }
         }
     }
     
@@ -148,7 +157,20 @@ class GameScene: SKScene {
                     if tile.isHit { continue }
                     
                     tile.hit()
-                    score -= 5
+                    if(viewController?.heart3)!{
+                        viewController?.heartView3.isHidden = true
+                        viewController?.heart3 = false
+                    }else if(viewController?.heart2)!{
+                        viewController?.heartView2.isHidden = true
+                        viewController?.heart2 = false
+                    }else if(viewController?.heart1)!{
+                        viewController?.heartView1.isHidden = true
+                        viewController?.heart1 = false
+                        isLost = true
+                        gameTime.isHidden = true
+                        time = 300
+                        endGame(winOrLose: false)
+                    }
                     
                     if let soundURL = Bundle.main.url(forResource: "whackBad", withExtension: "caf") {
                         var mySound: SystemSoundID = 0

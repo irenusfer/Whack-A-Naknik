@@ -11,6 +11,15 @@ import SpriteKit
 import GameplayKit
 
 class GameViewController: UIViewController {
+    var image: UIImage?
+    
+    @IBOutlet weak var heartView1: UIImageView!
+    @IBOutlet weak var heartView2: UIImageView!
+    @IBOutlet weak var heartView3: UIImageView!
+    var heart1:Bool = true
+    var heart2:Bool = true
+    var heart3:Bool = true
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -24,9 +33,11 @@ class GameViewController: UIViewController {
                 scene.viewController = self
                 view.presentScene(scene)
             }
+            heartView1.image = #imageLiteral(resourceName: "heart.png")
+            heartView2.image = #imageLiteral(resourceName: "heart.png")
+            heartView3.image = #imageLiteral(resourceName: "heart.png")
             
             view.ignoresSiblingOrder = true
-            
             view.showsFPS = true
             view.showsNodeCount = true
         }

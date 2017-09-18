@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7337DD021F6E9803009E0FD6 /* Pin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7337DD011F6E9803009E0FD6 /* Pin.swift */; };
+		7337DD041F6F07F7009E0FD6 /* heart.png in Resources */ = {isa = PBXBuildFile; fileRef = 7337DD031F6F07F7009E0FD6 /* heart.png */; };
 		7338D5811F49ECA100407C5F /* steck.png in Resources */ = {isa = PBXBuildFile; fileRef = 7338D5801F49ECA100407C5F /* steck.png */; };
 		7338D5831F49EE0100407C5F /* sausage.png in Resources */ = {isa = PBXBuildFile; fileRef = 7338D5821F49EE0100407C5F /* sausage.png */; };
 		7338D5851F49F01D00407C5F /* party.png in Resources */ = {isa = PBXBuildFile; fileRef = 7338D5841F49F01D00407C5F /* party.png */; };
@@ -34,6 +36,14 @@
 		73B1A2F81F46FD5100F71D88 /* Tile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B1A2F71F46FD5100F71D88 /* Tile.swift */; };
 		73B1A2FC1F472A7F00F71D88 /* EndViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B1A2FB1F472A7F00F71D88 /* EndViewController.swift */; };
 		73B1A2FE1F472ABC00F71D88 /* MainMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B1A2FD1F472ABC00F71D88 /* MainMenuViewController.swift */; };
+		73E60AFB1F6AF8960065F946 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E60AFA1F6AF8960065F946 /* TableViewController.swift */; };
+		73E60AFE1F6AF8B30065F946 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E60AFD1F6AF8B30065F946 /* MapViewController.swift */; };
+		73E60B011F6AFB340065F946 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 73E60B001F6AFB340065F946 /* libsqlite3.tbd */; };
+		73E60B031F6AFB840065F946 /* DBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E60B021F6AFB840065F946 /* DBManager.swift */; };
+		73E60B061F6AFEF80065F946 /* WhackANaknik.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 73E60B041F6AFEF80065F946 /* WhackANaknik.xcdatamodeld */; };
+		73E60B0D1F6B09950065F946 /* Player+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E60B0B1F6B09950065F946 /* Player+CoreDataClass.swift */; };
+		73E60B0E1F6B09950065F946 /* Player+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E60B0C1F6B09950065F946 /* Player+CoreDataProperties.swift */; };
+		73E60B101F6B0FC50065F946 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73E60B0F1F6B0FC50065F946 /* CoreLocation.framework */; };
 		73FFEBD31F4AEF8200E292A6 /* mainBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 73FFEBD21F4AEF8200E292A6 /* mainBackground.png */; };
 		73FFEBDB1F4B03C800E292A6 /* endImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 73FFEBDA1F4B03C800E292A6 /* endImage.png */; };
 /* End PBXBuildFile section */
@@ -56,6 +66,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7337DD011F6E9803009E0FD6 /* Pin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pin.swift; sourceTree = "<group>"; };
+		7337DD031F6F07F7009E0FD6 /* heart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = heart.png; sourceTree = "<group>"; };
 		7338D5801F49ECA100407C5F /* steck.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = steck.png; sourceTree = "<group>"; };
 		7338D5821F49EE0100407C5F /* sausage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sausage.png; sourceTree = "<group>"; };
 		7338D5841F49F01D00407C5F /* party.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = party.png; sourceTree = "<group>"; };
@@ -89,6 +101,14 @@
 		73B1A2F71F46FD5100F71D88 /* Tile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tile.swift; sourceTree = "<group>"; };
 		73B1A2FB1F472A7F00F71D88 /* EndViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EndViewController.swift; sourceTree = "<group>"; };
 		73B1A2FD1F472ABC00F71D88 /* MainMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenuViewController.swift; sourceTree = "<group>"; };
+		73E60AFA1F6AF8960065F946 /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
+		73E60AFD1F6AF8B30065F946 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		73E60B001F6AFB340065F946 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		73E60B021F6AFB840065F946 /* DBManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DBManager.swift; sourceTree = "<group>"; };
+		73E60B051F6AFEF80065F946 /* WhackANaknik.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = WhackANaknik.xcdatamodel; sourceTree = "<group>"; };
+		73E60B0B1F6B09950065F946 /* Player+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Player+CoreDataClass.swift"; sourceTree = "<group>"; };
+		73E60B0C1F6B09950065F946 /* Player+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Player+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		73E60B0F1F6B0FC50065F946 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		73FFEBD21F4AEF8200E292A6 /* mainBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mainBackground.png; sourceTree = "<group>"; };
 		73FFEBD71F4AFB9100E292A6 /* whack.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = whack.caf; sourceTree = "<group>"; };
 		73FFEBD91F4B028300E292A6 /* whackBad.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = whackBad.caf; sourceTree = "<group>"; };
@@ -100,6 +120,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				73E60B101F6B0FC50065F946 /* CoreLocation.framework in Frameworks */,
+				73E60B011F6AFB340065F946 /* libsqlite3.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -123,10 +145,13 @@
 		73B1A2981F46F47000F71D88 = {
 			isa = PBXGroup;
 			children = (
+				73E60B0B1F6B09950065F946 /* Player+CoreDataClass.swift */,
+				73E60B0C1F6B09950065F946 /* Player+CoreDataProperties.swift */,
 				73B1A2A31F46F47000F71D88 /* WhackANaknik */,
 				73B1A2BE1F46F47000F71D88 /* WhackANaknikTests */,
 				73B1A2C91F46F47000F71D88 /* WhackANaknikUITests */,
 				73B1A2A21F46F47000F71D88 /* Products */,
+				73E60AFF1F6AFB330065F946 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -157,6 +182,11 @@
 				73B1A2F71F46FD5100F71D88 /* Tile.swift */,
 				73B1A2FB1F472A7F00F71D88 /* EndViewController.swift */,
 				73B1A2FD1F472ABC00F71D88 /* MainMenuViewController.swift */,
+				73E60AFA1F6AF8960065F946 /* TableViewController.swift */,
+				73E60AFD1F6AF8B30065F946 /* MapViewController.swift */,
+				73E60B021F6AFB840065F946 /* DBManager.swift */,
+				73E60B041F6AFEF80065F946 /* WhackANaknik.xcdatamodeld */,
+				7337DD011F6E9803009E0FD6 /* Pin.swift */,
 			);
 			path = WhackANaknik;
 			sourceTree = "<group>";
@@ -182,6 +212,7 @@
 		73B1A2D91F46F83400F71D88 /* Content */ = {
 			isa = PBXGroup;
 			children = (
+				7337DD031F6F07F7009E0FD6 /* heart.png */,
 				73B1A2DA1F46F83400F71D88 /* gameOver.png */,
 				7338D5801F49ECA100407C5F /* steck.png */,
 				73B1A2DB1F46F83400F71D88 /* gameOver@2x.png */,
@@ -201,6 +232,15 @@
 				73B1A2E71F46F83400F71D88 /* whackMask@2x.png */,
 			);
 			path = Content;
+			sourceTree = "<group>";
+		};
+		73E60AFF1F6AFB330065F946 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				73E60B0F1F6B0FC50065F946 /* CoreLocation.framework */,
+				73E60B001F6AFB340065F946 /* libsqlite3.tbd */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -314,6 +354,7 @@
 				7338D5851F49F01D00407C5F /* party.png in Resources */,
 				73B1A2F61F46F83400F71D88 /* whackMask@2x.png in Resources */,
 				7338D5831F49EE0100407C5F /* sausage.png in Resources */,
+				7337DD041F6F07F7009E0FD6 /* heart.png in Resources */,
 				734654851F48D79800072621 /* backgrou.png in Resources */,
 				73B1A2B01F46F47000F71D88 /* Main.storyboard in Resources */,
 				73B1A2F21F46F83400F71D88 /* whackBad.caf in Resources */,
@@ -357,6 +398,13 @@
 				73B1A2FC1F472A7F00F71D88 /* EndViewController.swift in Sources */,
 				73B1A2AB1F46F47000F71D88 /* GameScene.swift in Sources */,
 				73B1A2AD1F46F47000F71D88 /* GameViewController.swift in Sources */,
+				73E60AFB1F6AF8960065F946 /* TableViewController.swift in Sources */,
+				73E60B0E1F6B09950065F946 /* Player+CoreDataProperties.swift in Sources */,
+				73E60B061F6AFEF80065F946 /* WhackANaknik.xcdatamodeld in Sources */,
+				73E60AFE1F6AF8B30065F946 /* MapViewController.swift in Sources */,
+				7337DD021F6E9803009E0FD6 /* Pin.swift in Sources */,
+				73E60B0D1F6B09950065F946 /* Player+CoreDataClass.swift in Sources */,
+				73E60B031F6AFB840065F946 /* DBManager.swift in Sources */,
 				73B1A2F81F46FD5100F71D88 /* Tile.swift in Sources */,
 				73B1A2FE1F472ABC00F71D88 /* MainMenuViewController.swift in Sources */,
 				73B1A2A51F46F47000F71D88 /* AppDelegate.swift in Sources */,
@@ -628,6 +676,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		73E60B041F6AFEF80065F946 /* WhackANaknik.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				73E60B051F6AFEF80065F946 /* WhackANaknik.xcdatamodel */,
+			);
+			currentVersion = 73E60B051F6AFEF80065F946 /* WhackANaknik.xcdatamodel */;
+			path = WhackANaknik.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 73B1A2991F46F47000F71D88 /* Project object */;
 }
