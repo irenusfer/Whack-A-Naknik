@@ -12,7 +12,7 @@ import AVFoundation
 
 class GameScene: SKScene {
     var isLost:Bool = false
-    var viewController: GameViewController?
+    weak var viewController: GameViewController?
     private var tiles = [Tile]()
     private var gameScore : SKLabelNode!
     private var gameTime : SKLabelNode!

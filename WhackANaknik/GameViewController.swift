@@ -20,8 +20,8 @@ class GameViewController: UIViewController {
     var heart2:Bool = true
     var heart3:Bool = true
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
         if let view = self.view as! SKView? {
             // Load the SKScene from 'GameScene.sks'
@@ -33,6 +33,12 @@ class GameViewController: UIViewController {
                 scene.viewController = self
                 view.presentScene(scene)
             }
+            heart1 = true
+            heart2 = true
+            heart3 = true
+            heartView1.isHidden = false
+            heartView2.isHidden = false
+            heartView3.isHidden = false
             heartView1.image = #imageLiteral(resourceName: "heart.png")
             heartView2.image = #imageLiteral(resourceName: "heart.png")
             heartView3.image = #imageLiteral(resourceName: "heart.png")

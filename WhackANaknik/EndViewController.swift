@@ -26,11 +26,11 @@ class EndViewController: UIViewController,CLLocationManagerDelegate {
     @IBOutlet weak var ScoreLabel: UILabel!
     @IBOutlet weak var scoreTextLabel: UILabel!
     
-    @IBAction func mainMenu(_ sender: UIButton) {
-        performSegue(withIdentifier: "Main Menu", sender: self)
-    }
     @IBAction func Restart(_ sender: UIButton) {
-        performSegue(withIdentifier: "Restart", sender: self)
+        navigationController?.popViewController(animated: true)
+    }
+    @IBAction func mainMenu(_ sender: UIButton) {
+        dismiss(animated: true, completion: nil)
     }
     @IBAction func submitScore(_ sender: UIButton) {
         playerName = textField.text!

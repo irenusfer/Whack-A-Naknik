@@ -39,7 +39,6 @@
                                 <state key="normal" title="Start Game"/>
                                 <connections>
                                     <action selector="StartGame:" destination="u2z-3P-f3v" eventType="touchUpInside" id="dVc-ij-7SS"/>
-                                    <segue destination="BV1-FR-VrT" kind="show" identifier="Start Game" id="of9-UT-FLH"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oXe-6q-LKX">
@@ -72,6 +71,9 @@
                         </subviews>
                         <color key="backgroundColor" red="0.60000002384185791" green="0.40000000596046448" blue="0.20000000298023224" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
+                    <connections>
+                        <segue destination="DYY-cr-Qqp" kind="show" identifier="Start Game" id="xCS-Am-Fbz"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qeF-hg-nCZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -100,7 +102,6 @@
                                 <state key="normal" title="Back"/>
                                 <connections>
                                     <action selector="backToMain:" destination="cQ0-g9-vJJ" eventType="touchUpInside" id="MHt-NX-8br"/>
-                                    <segue destination="u2z-3P-f3v" kind="show" identifier="Back From Map" id="cDX-ht-AFR"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -112,7 +113,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WKJ-Bj-dW5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-697.5" y="848.23943661971828"/>
+            <point key="canvasLocation" x="-696" y="1242"/>
         </scene>
         <!--Table View Controller-->
         <scene sceneID="DIK-NJ-jbO">
@@ -133,7 +134,6 @@
                                 <state key="normal" title="Back"/>
                                 <connections>
                                     <action selector="backToMain:" destination="hW1-IU-Alx" eventType="touchUpInside" id="j2m-l1-zEq"/>
-                                    <segue destination="u2z-3P-f3v" kind="show" identifier="Back From Table" id="HWK-cJ-3Sh"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name:        Score:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CUH-JI-MMs">
@@ -174,6 +174,22 @@
             </objects>
             <point key="canvasLocation" x="60" y="850.35211267605632"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="UGJ-fr-q3R">
+            <objects>
+                <navigationController navigationBarHidden="YES" id="DYY-cr-Qqp" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Hhd-cW-bGu">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="BV1-FR-VrT" kind="relationship" relationship="rootViewController" id="bSz-z8-197"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1pe-Bj-Y9Q" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-319" y="-586"/>
+        </scene>
         <!--Game View Controller-->
         <scene sceneID="tXr-a1-R10">
             <objects>
@@ -201,6 +217,7 @@
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
+                    <navigationItem key="navigationItem" id="T7P-8S-hZh"/>
                     <connections>
                         <outlet property="heartView1" destination="Smj-th-5Yg" id="p4R-Sa-7dz"/>
                         <outlet property="heartView2" destination="RgK-Hl-E3G" id="5lf-hs-bWP"/>
@@ -242,7 +259,6 @@
                                 <state key="normal" title="Menu"/>
                                 <connections>
                                     <action selector="mainMenu:" destination="cjU-Hw-hV6" eventType="touchUpInside" id="OCg-QC-KqW"/>
-                                    <segue destination="u2z-3P-f3v" kind="show" identifier="Main Menu" id="9jo-1X-S0V"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4vA-xS-0kN">
@@ -252,7 +268,6 @@
                                 <state key="normal" title="Restart"/>
                                 <connections>
                                     <action selector="Restart:" destination="cjU-Hw-hV6" eventType="touchUpInside" id="PQq-cG-1og"/>
-                                    <segue destination="BV1-FR-VrT" kind="show" identifier="Restart" id="siW-D2-fnT"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Score:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hs5-dF-cUc">
@@ -314,8 +329,6 @@
         <image name="mainBackground.png" width="338" height="480"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="o6D-iI-MjE"/>
-        <segue reference="HWK-cJ-3Sh"/>
-        <segue reference="of9-UT-FLH"/>
+        <segue reference="jaC-es-efb"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -16,7 +16,7 @@ class TableViewController: UIViewController,UITableViewDelegate,UITableViewDataS
     @IBOutlet weak var tableView: UITableView!
     
     @IBAction func backToMain(_ sender: UIButton) {
-        performSegue(withIdentifier: "Back From Table", sender: self)
+        dismiss(animated: true, completion: nil)
     }
     override func viewDidLoad() {
         super.viewDidLoad()

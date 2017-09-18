@@ -17,7 +17,7 @@ class MapViewController: UIViewController {
     @IBOutlet weak var mapView: MKMapView!
     
     @IBAction func backToMain(_ sender: UIButton) {
-        performSegue(withIdentifier: "Back From Map", sender: self)
+        dismiss(animated: true, completion: nil)
     }
     override func viewDidLoad() {
         super.viewDidLoad()
